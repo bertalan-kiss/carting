@@ -23,9 +23,9 @@ namespace Carting.Core.Services
             _cartingRepository.AddCartItem(Mapper.Map(cartItem));
         }
 
-        public void RemoveCartItem(int cartItemId)
+        public void RemoveCartItem(int cartId, int cartItemId)
         {
-            _cartingRepository.RemoveCartItem(cartItemId);
+            _cartingRepository.RemoveCartItem(cartId, cartItemId);
         }
     }
 }

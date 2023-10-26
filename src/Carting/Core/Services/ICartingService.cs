@@ -6,7 +6,7 @@ namespace Carting.Core.Services
     {
         List<CartItem> GetCartItems(int cartId);
         void AddCartItem(CartItem cartItem);
-        void RemoveCartItem(int cartItemId);
+        void RemoveCartItem(int cartId, int cartItemId);
     }
 }
 

@@ -25,11 +25,14 @@ namespace Carting.DataAccess.Repositories
             collection.Insert(cartItem);
         }
 
-        public void RemoveCartItem(int cartItemId)
+        public void RemoveCartItem(int cartId, int cartItemId)
         {
             using var db = new LiteDatabase(DatabasePath);
 
             var collection = db.GetCollection<CartItem>(CartItemsTableName);
+
+            var item = collection.FindOne(x => x.CartId == cartId && x._id == cartItemId);
+
             collection.Delete(cartItemId);
         }
     }
