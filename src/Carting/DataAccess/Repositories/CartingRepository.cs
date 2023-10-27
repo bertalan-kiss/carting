@@ -9,7 +9,16 @@ namespace Carting.DataAccess.Repositories
         private const string DatabasePath = "CartingDatabase.db";
         private const string CartItemsTableName = "cart_items";
 
-        public List<CartItem> GetCartItems(string cartId)
+        public IList<CartItem> GetCartItems()
+        {
+            using var db = new LiteDatabase(DatabasePath);
+
+            var collection = db.GetCollection<CartItem>(CartItemsTableName);
+
+            return collection.FindAll().ToList();
+        }
+
+        public IList<CartItem> GetCartItems(string cartId)
         {
             using var db = new LiteDatabase(DatabasePath);
 

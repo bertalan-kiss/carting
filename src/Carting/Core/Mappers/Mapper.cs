@@ -44,13 +44,17 @@ namespace Carting.Core.Mappers
             };
         }
 
-        public static List<CartItem> Map(List<DataAccess.Models.CartItem> cartItems)
+        public static IEnumerable<CartItem> Map(IList<DataAccess.Models.CartItem> cartItems)
         {
             if (cartItems == null) 
                 throw new ArgumentNullException(nameof(cartItems));
 
             var result = new List<CartItem>();
-            cartItems.ForEach(i => result.Add(Map(i)));
+
+            foreach ( var cartItem in cartItems )
+            {
+                result.Add(Map(cartItem));
+            }
 
             return result;
         }

@@ -13,7 +13,12 @@ namespace Carting.Core.Services
             _cartingRepository = cartingRepository;
         }
 
-        public List<CartItem> GetCartItems(string cartId)
+        public IEnumerable<CartItem> GetCartItems()
+        {
+            return Mapper.Map(_cartingRepository.GetCartItems());
+        }
+
+        public IEnumerable<CartItem> GetCartItems(string cartId)
         {
             return Mapper.Map(_cartingRepository.GetCartItems(cartId));
         }
