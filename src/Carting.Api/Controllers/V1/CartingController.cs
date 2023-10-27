@@ -1,7 +1,11 @@
 ﻿using Carting.Api.Mappers;
 using Carting.Api.Requests.V1;
+using Carting.Api.Responses.V1;
 using Carting.Core.Services;
+using Carting.DataAccess.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Net;
 
 namespace Carting.Api.Controllers.V1;
 
@@ -10,8 +14,6 @@ namespace Carting.Api.Controllers.V1;
 public class CartingController : ControllerBase
 {
     // TODO:
-    // CartId to string
-    // Status codes
     // V2
     // API documentation
 
@@ -24,29 +26,65 @@ public class CartingController : ControllerBase
 
     [HttpGet]
     [Route("cart/{cartId}")]
-    public IActionResult Get(int cartId)
+    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(CartResponse))]
+    [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError), typeof(string))]
+    public IActionResult Get(string cartId)
     {
-        var result = cartingService.GetCartItems(cartId);
+        try
+        {
+            var result = cartingService.GetCartItems(cartId);
 
-        return Ok(Mapper.Map(cartId, result));
+            return Ok(Mapper.Map(cartId, result));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
     }
 
     [HttpPost]
     [Route("cart/{cartId}")]
-    public IActionResult Post(int cartId, CartItemRequest request)
+    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]
+    [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
+    [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError), typeof(string))]
+    public IActionResult Post(string cartId, CartItemRequest request)
     {
-        cartingService.AddCartItem(Mapper.Map(cartId, request));
+        try
+        {
+            cartingService.AddCartItem(Mapper.Map(cartId, request));
 
-        return Ok();
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
     }
 
     [HttpDelete]
     [Route("cart/{cartId}")]
-    public IActionResult Delete(int cartId, int itemId)
+    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]
+    [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]    
+    [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError), typeof(string))]
+    public IActionResult Delete(string cartId, int itemId)
     {
-        cartingService.RemoveCartItem(cartId, itemId);
+        try
+        {
+            var result = cartingService.RemoveCartItem(cartId, itemId);
 
-        return Ok();
+            if (result)
+                return Ok();
+            else
+                return StatusCode(500, $"Failed to delete cart item with id: {itemId}, cart id: {cartId}");
+        }
+        catch (CartItemNotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
     }
 }
 

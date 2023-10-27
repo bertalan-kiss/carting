@@ -5,7 +5,7 @@ namespace Carting.Api.Mappers
 {
     public static class Mapper
 	{
-		public static Core.Models.CartItem Map(int cartId, CartItemRequest request)
+		public static Core.Models.CartItem Map(string cartId, CartItemRequest request)
 		{
             var cartItem = new Core.Models.CartItem
             {
@@ -27,28 +27,18 @@ namespace Carting.Api.Mappers
             return cartItem;
         }
 
-        public static CartResponse Map(int cartId, IEnumerable<Core.Models.CartItem> cartItems)
+        public static CartResponse Map(string cartId, IEnumerable<Core.Models.CartItem> cartItems)
         {
             var items = new List<CartItem>();
 
             foreach (var cartItem in cartItems)
             {
-                Responses.V1.Image image = null;
-
-                if (cartItem.Image != null)
-                {
-                    image = new Responses.V1.Image
-                    {
-                        Url = cartItem.Image.Url,
-                        Alt = cartItem.Image.Alt
-                    };
-                }
-
                 items.Add(new CartItem
                 {
                     _id = cartItem.Id,
                     Name = cartItem.Name,
-                    Image = image,
+                    ImageUrl = cartItem.Image?.Url,
+                    ImageAlt = cartItem.Image?.Alt,
                     Price = cartItem.Price,
                     Quantity = cartItem.Quantity
                 }); ;

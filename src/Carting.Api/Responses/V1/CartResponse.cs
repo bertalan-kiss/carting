@@ -2,7 +2,7 @@
 {
 	public class CartResponse
 	{
-		public int CartId { get; set; }
+		public string CartId { get; set; }
 		public IEnumerable<CartItem> CartItems { get; set; }
 	}
 
@@ -10,15 +10,10 @@
 	{
         public int _id { get; set; }
         public string Name { get; set; }
-        public Image Image { get; set; }
+        public string ImageUrl { get; set; }
+        public string ImageAlt { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
-    }
-
-    public class Image
-    {
-        public string Url { get; set; }
-        public string Alt { get; set; }
     }
 }
 

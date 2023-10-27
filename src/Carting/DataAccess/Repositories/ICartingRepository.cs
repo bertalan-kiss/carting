@@ -4,9 +4,9 @@ namespace Carting.DataAccess.Repositories
 {
     public interface ICartingRepository
     {
-        List<CartItem> GetCartItems(int cartId);
+        List<CartItem> GetCartItems(string cartId);
         void AddCartItem(CartItem cartItem);
-        void RemoveCartItem(int cartId, int cartItemId);
+        bool RemoveCartItem(string cartId, int cartItemId);
     }
 }
 

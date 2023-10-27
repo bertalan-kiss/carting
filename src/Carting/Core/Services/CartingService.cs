@@ -13,7 +13,7 @@ namespace Carting.Core.Services
             _cartingRepository = cartingRepository;
         }
 
-        public List<CartItem> GetCartItems(int cartId)
+        public List<CartItem> GetCartItems(string cartId)
         {
             return Mapper.Map(_cartingRepository.GetCartItems(cartId));
         }
@@ -23,9 +23,9 @@ namespace Carting.Core.Services
             _cartingRepository.AddCartItem(Mapper.Map(cartItem));
         }
 
-        public void RemoveCartItem(int cartId, int cartItemId)
+        public bool RemoveCartItem(string cartId, int cartItemId)
         {
-            _cartingRepository.RemoveCartItem(cartId, cartItemId);
+            return _cartingRepository.RemoveCartItem(cartId, cartItemId);
         }
     }
 }
