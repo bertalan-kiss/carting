@@ -1,19 +1,12 @@
-﻿namespace Carting.Api.Responses.V1
+﻿namespace Carting.Api.Responses.V2
 {
-	public class CartResponse
-	{
-        /// <summary>
-        /// Identifier of the cart
-        /// </summary>
-		public string CartId { get; set; }
-        /// <summary>
-        /// List of cart items
-        /// </summary>
-		public IEnumerable<CartItem> CartItems { get; set; }
-	}
 
-	public class CartItem
-	{
+    public class CartItem
+    {
+        /// <summary>
+        /// Id of the cart
+        /// </summary>
+        public string CartId { get; set; }
         /// <summary>
         /// Id of the cart item
         /// </summary>

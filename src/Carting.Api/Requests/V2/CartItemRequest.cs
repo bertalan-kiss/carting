@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Carting.Api.Requests.V1
+namespace Carting.Api.Requests.V2
 {
     public class CartItemRequest
     {

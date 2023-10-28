@@ -1,22 +1,17 @@
-﻿using Carting.Api.Mappers;
-using Carting.Api.Requests.V1;
-using Carting.Api.Responses.V1;
+﻿using Carting.Api.Mappers.V2;
+using Carting.Api.Requests.V2;
 using Carting.Core.Services;
 using Carting.DataAccess.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Annotations;
-using System.Net;
 
 namespace Carting.Api.Controllers.V2;
 
 [ApiController]
-[Route("api/v2")]
+[ApiVersion("2.0")]
+[ApiExplorerSettings(GroupName = "v2")]
+[Route("api/v{version:apiVersion}")]
 public class CartingController : ControllerBase
 {
-    // TODO:
-    // V2
-    // API documentation
-
     private readonly ICartingService cartingService;
 
     public CartingController(ICartingService cartingService)
@@ -24,10 +19,22 @@ public class CartingController : ControllerBase
         this.cartingService = cartingService;
     }
 
+    /// <summary>
+    /// Returns all cart items.
+    /// </summary>
+    /// <returns>Cart items.</returns>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /cart
+    ///
+    /// </remarks>
+    /// <response code="200">Cart items returned successfully</response>
+    /// <response code="500">Internal server error occured</response>
     [HttpGet]
     [Route("cart")]
-    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK), typeof(CartResponse))]
-    [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError), typeof(string))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public IActionResult Get()
     {
         try
@@ -42,11 +49,35 @@ public class CartingController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Creates a cart item in the cart for the provided cartId.
+    /// </summary>
+    /// <param name="cartId">Identifier of the cart.</param>
+    /// <param name="request">Cart item request.</param>
+    /// <returns></returns>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Cart/1
+    ///     {
+    ///        "name": "string",
+    ///        "image": {
+    ///             "url": "string",
+    ///             "alt": "string",
+    ///        },
+    ///        "price": 0,
+    ///        "quantity": 0
+    ///     }
+    ///
+    /// </remarks>
+    /// <response code="200">Cart items returned successfully</response>
+    /// <response code="400">Bad request</response>
+    /// <response code="500">Internal server error occured</response>
     [HttpPost]
     [Route("cart/{cartId}")]
-    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]
-    [SwaggerResponse((int)HttpStatusCode.BadRequest, nameof(HttpStatusCode.BadRequest))]
-    [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError), typeof(string))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public IActionResult Post(string cartId, CartItemRequest request)
     {
         try
@@ -61,11 +92,26 @@ public class CartingController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Deletes a cart item from the cart based on the provided cartId.
+    /// </summary>
+    /// <param name="cartId">Identifier of the cart.</param>
+    /// <param name="itemId">Identifier of the cart item.</param>
+    /// <returns></returns>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     DELETE /cart/1?itemId=1
+    ///
+    /// </remarks>
+    /// <response code="200">Cart item deleted successfully</response>
+    /// <response code="404">Cart or cart item not found</response>
+    /// <response code="500">Internal server error occured</response>
     [HttpDelete]
     [Route("cart/{cartId}")]
-    [SwaggerResponse((int)HttpStatusCode.OK, nameof(HttpStatusCode.OK))]
-    [SwaggerResponse((int)HttpStatusCode.NotFound, nameof(HttpStatusCode.NotFound), typeof(string))]    
-    [SwaggerResponse((int)HttpStatusCode.InternalServerError, nameof(HttpStatusCode.InternalServerError), typeof(string))]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public IActionResult Delete(string cartId, int itemId)
     {
         try
