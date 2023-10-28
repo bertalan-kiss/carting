@@ -4,9 +4,9 @@ using Carting.Api.Responses.V2;
 namespace Carting.Api.Mappers.V2
 {
     public static class Mapper
-	{
-		public static Core.Models.CartItem Map(string cartId, CartItemRequest request)
-		{
+    {
+        public static Core.Models.CartItem Map(string cartId, CartItemRequest request)
+        {
             var cartItem = new Core.Models.CartItem
             {
                 CartId = cartId,
@@ -47,6 +47,6 @@ namespace Carting.Api.Mappers.V2
 
             return items;
         }
-	}
+    }
 }
 

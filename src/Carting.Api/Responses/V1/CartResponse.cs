@@ -1,7 +1,7 @@
 ﻿namespace Carting.Api.Responses.V1
 {
-	public class CartResponse
-	{
+    public class CartResponse
+    {
         /// <summary>
         /// Identifier of the cart
         /// </summary>
@@ -10,10 +10,10 @@
         /// List of cart items
         /// </summary>
 		public IEnumerable<CartItem> CartItems { get; set; }
-	}
+    }
 
-	public class CartItem
-	{
+    public class CartItem
+    {
         /// <summary>
         /// Id of the cart item
         /// </summary>
