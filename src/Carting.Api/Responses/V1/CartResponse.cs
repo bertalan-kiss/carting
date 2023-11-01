@@ -17,7 +17,7 @@
         /// <summary>
         /// Id of the cart item
         /// </summary>
-        public int _id { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// Name of the cart item
         /// </summary>

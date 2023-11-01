@@ -35,7 +35,7 @@ namespace Carting.Api.Mappers.V1
             {
                 items.Add(new CartItem
                 {
-                    _id = cartItem.Id,
+                    Id = cartItem.Id,
                     Name = cartItem.Name,
                     ImageUrl = cartItem.Image?.Url,
                     ImageAlt = cartItem.Image?.Alt,
