@@ -3,6 +3,7 @@ using Carting.Api.Requests.V2;
 using Carting.Core.Services;
 using Carting.DataAccess.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Carting.Api.Controllers.V2;
 
@@ -112,7 +113,7 @@ public class CartingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public IActionResult Delete(string cartId, int itemId)
+    public IActionResult Delete(string cartId, [BindRequired] int itemId)
     {
         try
         {
