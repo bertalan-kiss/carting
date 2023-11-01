@@ -1,9 +1,9 @@
-﻿using Carting.Api.Requests.V1;
-using Carting.Api.Responses.V1;
+﻿using Carting.Api.Requests.V2;
+using Carting.Api.Responses.V2;
 
-namespace Carting.Api.Mappers.V1
+namespace Carting.Api.Mappers.V2
 {
-    public static class Mapper
+    public static class CartItemMapper
     {
         public static Core.Models.CartItem Map(string cartId, CartItemRequest request)
         {
@@ -27,7 +27,7 @@ namespace Carting.Api.Mappers.V1
             return cartItem;
         }
 
-        public static CartResponse Map(string cartId, IEnumerable<Core.Models.CartItem> cartItems)
+        public static IEnumerable<CartItem> Map(IEnumerable<Core.Models.CartItem> cartItems)
         {
             var items = new List<CartItem>();
 
@@ -35,6 +35,7 @@ namespace Carting.Api.Mappers.V1
             {
                 items.Add(new CartItem
                 {
+                    CartId = cartItem.CartId,
                     _id = cartItem.Id,
                     Name = cartItem.Name,
                     ImageUrl = cartItem.Image?.Url,
@@ -44,11 +45,7 @@ namespace Carting.Api.Mappers.V1
                 }); ;
             }
 
-            return new CartResponse
-            {
-                CartId = cartId,
-                CartItems = items
-            };
+            return items;
         }
     }
 }

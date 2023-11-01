@@ -2,7 +2,7 @@
 
 namespace Carting.Core.Mappers
 {
-    public static class Mapper
+    public static class CartItemMapper
     {
         public static DataAccess.Models.CartItem Map(CartItem cartItem)
         {

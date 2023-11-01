@@ -42,7 +42,7 @@ public class CartingController : ControllerBase
         {
             var result = cartingService.GetCartItems();
 
-            return Ok(Mapper.Map(result));
+            return Ok(CartItemMapper.Map(result));
         }
         catch (Exception ex)
         {
@@ -83,7 +83,7 @@ public class CartingController : ControllerBase
     {
         try
         {
-            cartingService.AddCartItem(Mapper.Map(cartId, request));
+            cartingService.AddCartItem(CartItemMapper.Map(cartId, request));
 
             return Ok();
         }

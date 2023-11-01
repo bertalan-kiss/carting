@@ -15,17 +15,17 @@ namespace Carting.Core.Services
 
         public IEnumerable<CartItem> GetCartItems()
         {
-            return Mapper.Map(_cartingRepository.GetCartItems());
+            return CartItemMapper.Map(_cartingRepository.GetCartItems());
         }
 
         public IEnumerable<CartItem> GetCartItems(string cartId)
         {
-            return Mapper.Map(_cartingRepository.GetCartItems(cartId));
+            return CartItemMapper.Map(_cartingRepository.GetCartItems(cartId));
         }
 
         public void AddCartItem(CartItem cartItem)
         {
-            _cartingRepository.AddCartItem(Mapper.Map(cartItem));
+            _cartingRepository.AddCartItem(CartItemMapper.Map(cartItem));
         }
 
         public bool RemoveCartItem(string cartId, int cartItemId)
