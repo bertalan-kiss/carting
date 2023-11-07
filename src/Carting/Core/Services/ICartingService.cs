@@ -4,9 +4,10 @@ namespace Carting.Core.Services
 {
     public interface ICartingService
     {
-        List<CartItem> GetCartItems(int cartId);
+        IEnumerable<CartItem> GetCartItems();
+        IEnumerable<CartItem> GetCartItems(string cartId);
         void AddCartItem(CartItem cartItem);
-        void RemoveCartItem(int cartItemId);
+        bool RemoveCartItem(string cartId, int cartItemId);
     }
 }
 

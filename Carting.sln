@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1706.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carting", "src\Carting\Carting.csproj", "{58FDF47A-685E-4924-B49E-E4E1BA18FA9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carting.Api", "src\Carting.Api\Carting.Api.csproj", "{EEC60156-1E9E-4B76-8DDA-8C867BAE594A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{58FDF47A-685E-4924-B49E-E4E1BA18FA9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58FDF47A-685E-4924-B49E-E4E1BA18FA9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58FDF47A-685E-4924-B49E-E4E1BA18FA9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC60156-1E9E-4B76-8DDA-8C867BAE594A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC60156-1E9E-4B76-8DDA-8C867BAE594A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC60156-1E9E-4B76-8DDA-8C867BAE594A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC60156-1E9E-4B76-8DDA-8C867BAE594A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

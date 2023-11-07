@@ -1,4 +1,5 @@
-﻿using Carting.DataAccess.Models;
+﻿using Carting.DataAccess.Exceptions;
+using Carting.DataAccess.Models;
 using LiteDB;
 
 namespace Carting.DataAccess.Repositories
@@ -8,13 +9,22 @@ namespace Carting.DataAccess.Repositories
         private const string DatabasePath = "CartingDatabase.db";
         private const string CartItemsTableName = "cart_items";
 
-        public List<CartItem> GetCartItems(int cartId)
+        public IList<CartItem> GetCartItems()
         {
             using var db = new LiteDatabase(DatabasePath);
 
             var collection = db.GetCollection<CartItem>(CartItemsTableName);
 
-            return collection.Find($"$.CartId = {cartId}").ToList();
+            return collection.FindAll().ToList();
+        }
+
+        public IList<CartItem> GetCartItems(string cartId)
+        {
+            using var db = new LiteDatabase(DatabasePath);
+
+            var collection = db.GetCollection<CartItem>(CartItemsTableName);
+
+            return collection.Find(x => x.CartId == cartId).ToList();
         }
 
         public void AddCartItem(CartItem cartItem)
@@ -25,12 +35,20 @@ namespace Carting.DataAccess.Repositories
             collection.Insert(cartItem);
         }
 
-        public void RemoveCartItem(int cartItemId)
+        public bool RemoveCartItem(string cartId, int cartItemId)
         {
             using var db = new LiteDatabase(DatabasePath);
 
             var collection = db.GetCollection<CartItem>(CartItemsTableName);
-            collection.Delete(cartItemId);
+
+            var item = collection.FindOne(x => x.CartId == cartId && x._id == cartItemId);
+
+            if (item == null)
+            {
+                throw new CartItemNotFoundException($"Cart item not found with id: {cartItemId}, cart id: {cartId}");
+            }
+
+            return collection.Delete(cartItemId);
         }
     }
 }

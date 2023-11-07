@@ -7,7 +7,7 @@ namespace Carting.Core
     {
         public static IServiceCollection AddCoreServices(this IServiceCollection collection)
         {
-            collection.AddSingleton<ICartingService, CartingService>();
+            collection.AddScoped<ICartingService, CartingService>();
             return collection;
         }
     }

@@ -7,7 +7,7 @@ namespace Carting.DataAccess
     {
         public static IServiceCollection AddDataAccessRepositories(this IServiceCollection collection)
         {
-            collection.AddSingleton<ICartingRepository, CartingRepository>();
+            collection.AddScoped<ICartingRepository, CartingRepository>();
             return collection;
         }
     }
