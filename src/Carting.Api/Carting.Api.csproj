@@ -35,6 +35,7 @@
     <None Remove="Responses\V2\" />
     <None Remove="Mappers\V1\" />
     <None Remove="Mappers\V2\" />
+    <None Remove="HostedService\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Requests\" />
@@ -47,5 +48,6 @@
     <Folder Include="Responses\V2\" />
     <Folder Include="Mappers\V1\" />
     <Folder Include="Mappers\V2\" />
+    <Folder Include="HostedService\" />
   </ItemGroup>
 </Project>

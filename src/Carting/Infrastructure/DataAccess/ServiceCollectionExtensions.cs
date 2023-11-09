@@ -1,7 +1,7 @@
-﻿using Carting.DataAccess.Repositories;
+﻿using Carting.Infrastructure.DataAccess.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Carting.DataAccess
+namespace Carting.Infrastructure.DataAccess
 {
     public static class ServiceCollectionExtensions
     {

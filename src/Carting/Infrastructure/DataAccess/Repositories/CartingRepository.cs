@@ -1,8 +1,8 @@
-﻿using Carting.DataAccess.Exceptions;
-using Carting.DataAccess.Models;
+﻿using Carting.Infrastructure.DataAccess.Exceptions;
+using Carting.Infrastructure.DataAccess.Models;
 using LiteDB;
 
-namespace Carting.DataAccess.Repositories
+namespace Carting.Infrastructure.DataAccess.Repositories
 {
     public class CartingRepository : ICartingRepository
     {

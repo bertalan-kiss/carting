@@ -1,6 +1,6 @@
-﻿using Carting.DataAccess.Models;
+﻿using Carting.Infrastructure.DataAccess.Models;
 
-namespace Carting.DataAccess.Repositories
+namespace Carting.Infrastructure.DataAccess.Repositories
 {
     public interface ICartingRepository
     {

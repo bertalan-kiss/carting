@@ -1,7 +1,7 @@
 ﻿using Carting.Api.Mappers.V2;
 using Carting.Api.Requests.V2;
 using Carting.Core.Services;
-using Carting.DataAccess.Exceptions;
+using Carting.Infrastructure.DataAccess.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 

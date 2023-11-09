@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
+using Carting.Api.HostedService;
 using Carting.Core;
-using Carting.DataAccess;
+using Carting.Infrastructure.DataAccess;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.OpenApi.Models;
 
@@ -15,6 +16,7 @@ public class Program
         // Add services to the container.
         builder.Services.AddCoreServices();
         builder.Services.AddDataAccessRepositories();
+        builder.Services.AddHostedService<CartingHostedService>();
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

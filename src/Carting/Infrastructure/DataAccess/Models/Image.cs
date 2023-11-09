@@ -1,4 +1,4 @@
-﻿namespace Carting.DataAccess.Models
+﻿namespace Carting.Infrastructure.DataAccess.Models
 {
     public class Image
     {
