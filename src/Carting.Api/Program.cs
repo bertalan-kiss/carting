@@ -2,7 +2,8 @@
 using Carting.Api.HostedService;
 using Carting.Core;
 using Carting.Infrastructure.DataAccess;
-using Microsoft.AspNetCore.Mvc.Versioning;
+using Carting.Infrastructure.Kafka;
+using Carting.Infrastructure.Kafka.Messages;
 using Microsoft.OpenApi.Models;
 
 namespace Carting.Api;
@@ -12,10 +13,13 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        var configurationBuilder = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: false);
+        var config = configurationBuilder.Build();
 
         // Add services to the container.
         builder.Services.AddCoreServices();
         builder.Services.AddDataAccessRepositories();
+        builder.Services.AddKafkaConsumer<ItemUpdatedMessage>(config);
         builder.Services.AddHostedService<CartingHostedService>();
 
         builder.Services.AddControllers();

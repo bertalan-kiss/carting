@@ -62,7 +62,7 @@ namespace Carting.Infrastructure.Kafka.Services
             var config = new ConsumerConfig()
             {
                 BootstrapServers = kafkaConfiguration.BootstrapServers,
-                SessionTimeoutMs = kafkaConfiguration.SessionTimeoutMs,
+                //SessionTimeoutMs = kafkaConfiguration.SessionTimeoutMs,
                 GroupId = kafkaConfiguration.GroupId,
                 EnableAutoCommit = true
             };

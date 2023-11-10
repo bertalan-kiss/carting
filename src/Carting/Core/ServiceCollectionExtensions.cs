@@ -1,4 +1,6 @@
 ﻿using Carting.Core.Services;
+using Carting.Infrastructure.Kafka.Messages;
+using Carting.Infrastructure.Kafka.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Carting.Core
@@ -7,7 +9,8 @@ namespace Carting.Core
     {
         public static IServiceCollection AddCoreServices(this IServiceCollection collection)
         {
-            collection.AddScoped<ICartingService, CartingService>();
+            collection.AddSingleton<ICartingService, CartingService>();
+            collection.AddSingleton<IMessageProcessor<ItemUpdatedMessage>, ItemUpdatedMessageProcessor>();
             return collection;
         }
     }

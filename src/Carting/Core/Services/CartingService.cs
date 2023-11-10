@@ -28,6 +28,11 @@ namespace Carting.Core.Services
             _cartingRepository.AddCartItem(CartItemMapper.Map(cartItem));
         }
 
+        public bool UpdateCartItem(CartItem cartItem)
+        {
+            return _cartingRepository.UpdateCartItem(CartItemMapper.Map(cartItem));
+        }
+
         public bool RemoveCartItem(string cartId, int cartItemId)
         {
             return _cartingRepository.RemoveCartItem(cartId, cartItemId);
