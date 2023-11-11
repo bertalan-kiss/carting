@@ -21,6 +21,7 @@ namespace Carting.Core.Services
             var item = new Infrastructure.DataAccess.Models.CartItem
             {
                 _id = message.Id,
+                ExternalId = message.Identifier,
                 Name = message.Name,
                 Image = new Infrastructure.DataAccess.Models.Image
                 {

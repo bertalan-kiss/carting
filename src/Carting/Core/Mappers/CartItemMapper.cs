@@ -13,6 +13,7 @@ namespace Carting.Core.Mappers
             {
                 CartId = cartItem.CartId,
                 _id = cartItem.Id,
+                ExternalId = cartItem.ExternalId,
                 Image = new Infrastructure.DataAccess.Models.Image
                 {
                     Url = cartItem.Image?.Url,
@@ -33,6 +34,7 @@ namespace Carting.Core.Mappers
             {
                 CartId = cartItem.CartId,
                 Id = cartItem._id,
+                ExternalId = cartItem.ExternalId,
                 Image = new Image
                 {
                     Url = cartItem.Image.Url,

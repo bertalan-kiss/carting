@@ -41,7 +41,7 @@ namespace Carting.Infrastructure.DataAccess.Repositories
 
             var collection = db.GetCollection<CartItem>(CartItemsTableName);
 
-            var item = collection.FindOne(x => x._id == cartItem._id);
+            var item = collection.FindOne(x => x.ExternalId == cartItem.ExternalId);
 
             if (item == null)
             {

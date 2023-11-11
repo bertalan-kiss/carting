@@ -5,6 +5,10 @@ namespace Carting.Api.Requests.V1
     public class CartItemRequest
     {
         /// <summary>
+        /// Unique identifier of the item in the external Catalog system 
+        /// </summary>
+        public Guid ExternalId { get; set; }
+        /// <summary>
         /// Name of the cart item
         /// </summary>
         [Required]
