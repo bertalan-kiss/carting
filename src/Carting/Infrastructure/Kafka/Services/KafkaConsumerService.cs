@@ -51,8 +51,6 @@ namespace Carting.Infrastructure.Kafka.Services
                     Consumer.Close();
                 }
             }
-
-            throw new NotImplementedException();
         }
 
         private string GetConsumerName() => typeof(TMessage).Name;
