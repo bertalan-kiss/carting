@@ -1,8 +1,8 @@
-﻿using Carting.DataAccess.Exceptions;
-using Carting.DataAccess.Models;
+﻿using Carting.Infrastructure.DataAccess.Exceptions;
+using Carting.Infrastructure.DataAccess.Models;
 using LiteDB;
 
-namespace Carting.DataAccess.Repositories
+namespace Carting.Infrastructure.DataAccess.Repositories
 {
     public class CartingRepository : ICartingRepository
     {
@@ -33,6 +33,27 @@ namespace Carting.DataAccess.Repositories
 
             var collection = db.GetCollection<CartItem>(CartItemsTableName);
             collection.Insert(cartItem);
+        }
+
+        public bool UpdateCartItem(CartItem cartItem)
+        {
+            using var db = new LiteDatabase(DatabasePath);
+
+            var collection = db.GetCollection<CartItem>(CartItemsTableName);
+
+            var item = collection.FindOne(x => x.ExternalId == cartItem.ExternalId);
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            item.Name = cartItem.Name;
+            item.Image = cartItem.Image;
+            item.Price = cartItem.Price;
+            item.Quantity = cartItem.Quantity;
+
+            return collection.Update(item);
         }
 
         public bool RemoveCartItem(string cartId, int cartItemId)

@@ -12,6 +12,10 @@
         /// </summary>
         public int Id { get; set; }
         /// <summary>
+        /// Unique identifier of the item in the external Catalog system 
+        /// </summary>
+        public Guid ExternalId { get; set; }
+        /// <summary>
         /// Name of the cart item
         /// </summary>
         public string Name { get; set; }

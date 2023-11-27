@@ -1,6 +1,6 @@
 ﻿using Carting.Core.Mappers;
 using Carting.Core.Models;
-using Carting.DataAccess.Repositories;
+using Carting.Infrastructure.DataAccess.Repositories;
 
 namespace Carting.Core.Services
 {
@@ -26,6 +26,11 @@ namespace Carting.Core.Services
         public void AddCartItem(CartItem cartItem)
         {
             _cartingRepository.AddCartItem(CartItemMapper.Map(cartItem));
+        }
+
+        public bool UpdateCartItem(CartItem cartItem)
+        {
+            return _cartingRepository.UpdateCartItem(CartItemMapper.Map(cartItem));
         }
 
         public bool RemoveCartItem(string cartId, int cartItemId)

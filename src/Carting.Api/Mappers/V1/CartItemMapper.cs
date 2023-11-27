@@ -10,6 +10,7 @@ namespace Carting.Api.Mappers.V1
             var cartItem = new Core.Models.CartItem
             {
                 CartId = cartId,
+                ExternalId = request.ExternalId,
                 Name = request.Name,
                 Price = request.Price,
                 Quantity = request.Quantity
@@ -36,6 +37,7 @@ namespace Carting.Api.Mappers.V1
                 items.Add(new CartItem
                 {
                     Id = cartItem.Id,
+                    ExternalId = cartItem.ExternalId,
                     Name = cartItem.Name,
                     ImageUrl = cartItem.Image?.Url,
                     ImageAlt = cartItem.Image?.Alt,
